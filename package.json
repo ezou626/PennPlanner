@@ -1,0 +1,27 @@
+{
+  "name": "pennplanner",
+  "version": "1.0.0",
+  "description": "Plan out your years at Penn with this web app!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ezou626/PennPlanner.git"
+  },
+  "keywords": [
+    "react",
+    "next",
+    "tailwind",
+    "express",
+    "node",
+    "js"
+  ],
+  "author": "Eric Zou",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ezou626/PennPlanner/issues"
+  },
+  "homepage": "https://github.com/ezou626/PennPlanner#readme"
+}
