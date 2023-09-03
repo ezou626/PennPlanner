@@ -2,7 +2,7 @@
   "name": "pennplanner",
   "version": "1.0.0",
   "description": "Plan out your years at Penn with this web app!",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,11 +25,15 @@
   },
   "homepage": "https://github.com/ezou626/PennPlanner#readme",
   "dependencies": {
+    "express": "^4.18.2",
     "next": "^13.4.19",
+    "next-auth": "^4.23.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/react": "^18.2.21",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.2.2"
   }
