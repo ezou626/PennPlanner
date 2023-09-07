@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Penn Planner',
 }
 
-export default function HomePage({
+export default async function HomePage({
   params,
   searchParams,
 }: {
