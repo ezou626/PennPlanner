@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from 'next';
 import Credit from '../components/credit';
-import Login from '../components/login'
+import Login from '../components/navigation'
 
 export const metadata: Metadata = {
   title: 'Penn Planner',
