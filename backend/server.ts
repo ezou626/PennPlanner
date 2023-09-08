@@ -12,6 +12,10 @@ const client = new Client({password: process.env.PG_PASS});
 await client.connect();
 console.log("Connected!");
 
+app.post('/add-user', (req, res, next) => {
+    res.send('Hello World!');
+})
+
 app.get('/get-saved-data', (req, res, next) => {
     res.send('Hello World!');
 })
