@@ -7,8 +7,8 @@ config();
 const app = express();
 const PORT = 5000;
 
-//establish db connection
-const client = new Client({password: process.env.PG_PASS});
+//establish elephantsql db connection
+const client = new Client(process.env.PG_URL);
 await client.connect();
 console.log("Connected!");
 
