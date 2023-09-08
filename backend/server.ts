@@ -43,7 +43,7 @@ app.post('/user', async (req, res, next) => {
     }
 })
 
-app.get('/data', async (req, res, next) => {
+app.post('/data', async (req, res, next) => {
     let body = req.body;
 
     if (body.secret != process.env.API_SECRET) {
