@@ -2,7 +2,7 @@
   "name": "pennplanner",
   "version": "1.0.0",
   "description": "Plan out your years at Penn with this web app!",
-  "main": "backend/server.js",
+  "main": "dist/backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev"

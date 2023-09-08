@@ -19,15 +19,15 @@ export default function Dashboard() {
 		)
 	}
 
-  const addCourse = (semesterIndex: number, courseName: string) => {
-    const newSemesterClasses = [...semesterClasses];
+	const addCourse = (semesterIndex: number, courseName: string) => {
+		const newSemesterClasses = [...semesterClasses];
 
-    newSemesterClasses[semesterIndex] = [...newSemesterClasses[semesterIndex], courseName]
+		newSemesterClasses[semesterIndex] = [...newSemesterClasses[semesterIndex], courseName]
 
-    setSemesterClasses(newSemesterClasses);
-  }
+		setSemesterClasses(newSemesterClasses);
+	}
 
-	const removeClass = (semesterIndex: number, courseIndex: number) => {
+	const removeCourse = (semesterIndex: number, courseIndex: number) => {
 		const newSemesterClasses = [...semesterClasses];
 
 		newSemesterClasses[semesterIndex] = newSemesterClasses[semesterIndex].filter(
@@ -44,7 +44,7 @@ export default function Dashboard() {
 				<li key={index}>
 					<div className='text-md rounded px-2 py-2 font-bold inline-flex'>
 						<p className='px-2 py-2 font-bold'>{`${course}`}</p>
-						<Button color='red' onClick={() => {removeClass(semesterIndex, index);}}>Remove</Button>
+						<Button color='red' onClick={() => {removeCourse(semesterIndex, index);}}>Remove</Button>
 					</div>
 				</li>
 			))}
