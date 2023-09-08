@@ -11,9 +11,9 @@ export default async function Dashboard() {
 	let name: string = "";
 	let email: string = "";
 
-	if (session !== null) {
-		name = session.user!.name!;
-		email = session.user!.email!;
+	if (session !== null && session.user !== undefined) {
+		name = session.user.name!;
+		email = session.user.email!;
 	}
 
 	const backendURL = process.env.API_URL;
