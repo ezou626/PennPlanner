@@ -2,10 +2,11 @@
   "name": "pennplanner",
   "version": "1.0.0",
   "description": "Plan out your years at Penn with this web app!",
-  "main": "backend/server.js",
+  "main": "dist/backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev"
+    "dev": "next dev",
+    "postinstall": "tsc"
   },
   "repository": {
     "type": "git",
@@ -27,15 +28,20 @@
   "homepage": "https://github.com/ezou626/PennPlanner#readme",
   "dependencies": {
     "@auth/core": "^0.14.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "next": "^13.4.19",
     "next-auth": "^4.23.1",
     "package.json": "^0.0.0",
+    "pg": "^8.11.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
+    "@types/pg": "^8.10.2",
     "@types/react": "^18.2.21",
     "autoprefixer": "^10.4.15",
     "postcss": "^8.4.29",
