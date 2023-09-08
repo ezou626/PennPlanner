@@ -6,14 +6,14 @@ import { useSession } from "next-auth/react";
 
 export default async function Dashboard() {
 
-	const {data: session} = useSession();
+	const {data: session, status} = useSession();
 
 	let name: string = "";
 	let email: string = "";
 
-	if (session !== null && session.user !== undefined) {
-		name = session.user.name!;
-		email = session.user.email!;
+	if (status === 'authenticated') {
+		name = session.user!.name;
+		email = session.user!.email;
 	}
 
 	const backendURL = process.env.API_URL;
