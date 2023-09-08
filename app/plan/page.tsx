@@ -4,7 +4,7 @@ import Credit from '../../components/credit';
 import NavigationBar from '../../components/navigation';
 import Dashboard from '../../components/dashboard';
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "../utils/authOptions";
 
 export const metadata: Metadata = {
   title: 'Penn Planner',
