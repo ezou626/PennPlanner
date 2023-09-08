@@ -1,5 +1,5 @@
 import express from 'express';
-import { Client } from 'pg';
+import { Client, Pool } from 'pg';
 import { config } from 'dotenv';
 
 config();
@@ -8,31 +8,31 @@ const app = express();
 const PORT = 5000;
 
 //establish elephantsql db connection
-const client = new Client(process.env.PG_URL);
+const client = new Pool({connectionString: process.env.PG_URL, max: 5});
 await client.connect();
-console.log("Connected!");
+console.log("Connected to DB!");
 
-app.post('/add-user', (req, res, next) => {
+app.post('/user', (req, res, next) => {
     res.send('Hello World!');
 })
 
-app.get('/get-saved-data', (req, res, next) => {
+app.get('/data', (req, res, next) => {
     res.send('Hello World!');
 })
 
-app.post('/add-semester', (req, res, next) => {
+app.post('/semester', (req, res, next) => {
     res.send('Hello World!');
 })
 
-app.post('/remove-semester', (req, res, next) => {
+app.delete('/semester', (req, res, next) => {
     res.send('Hello World!');
 })
 
-app.post('/add-course', (req, res, next) => {
+app.post('/course', (req, res, next) => {
     res.send('Hello World!');
 })
 
-app.post('/remove-course', (req, res, next) => {
+app.delete('/course', (req, res, next) => {
     res.send('Hello World!');
 })
 
