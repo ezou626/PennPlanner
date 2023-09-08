@@ -2,7 +2,7 @@ import express from 'express';
 const app = express();
 const PORT = 5000;
 
-app.get('/saved-data', (req, res, next) => {
+app.get('/get-saved-data', (req, res, next) => {
     res.send('Hello World!');
 })
 
