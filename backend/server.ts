@@ -21,7 +21,7 @@ app.post('/user', async (req, res, next) => {
     let body = req.body;
 
     if (body.secret != process.env.API_SECRET) {
-        res.send({completed: false})
+        res.json({completed: false})
         return;
     }
 
@@ -37,9 +37,9 @@ app.post('/user', async (req, res, next) => {
             text: `INSERT INTO PennData (name, email, data) VALUES (${body.name}, ${body.email}, []);`
         }
         await client.query(createQuery);
-        res.send({created: true});
+        res.json({created: true});
     } else {
-        res.send({created: false});
+        res.json({created: false});
     }
 })
 
@@ -47,7 +47,7 @@ app.post('/data', async (req, res, next) => {
     let body = req.body;
 
     if (body.secret != process.env.API_SECRET) {
-        res.send({completed: false})
+        res.json({completed: false})
         return;
     }
 
@@ -58,7 +58,7 @@ app.post('/data', async (req, res, next) => {
 
     const data = await client.query(checkQuery);
 
-    res.send({data: JSON.parse(data.rows[0])});
+    res.json({data: JSON.parse(data.rows[0])});
 
 })
 
@@ -66,7 +66,7 @@ app.post('/semester', async (req, res, next) => {
     let body = req.body;
 
     if (body.secret != process.env.API_SECRET) {
-        res.send({completed: false})
+        res.json({completed: false})
         return;
     }
 
@@ -86,14 +86,14 @@ app.post('/semester', async (req, res, next) => {
     }
     await client.query(updateQuery);
 
-    res.send({completed: true});
+    res.json({completed: true});
 })
 
 app.delete('/semester/:index', async (req, res, next) => {
     let body = req.body;
 
     if (body.secret != process.env.API_SECRET) {
-        res.send({completed: false})
+        res.json({completed: false})
         return;
     }
 
@@ -113,7 +113,7 @@ app.delete('/semester/:index', async (req, res, next) => {
     }
     await client.query(updateQuery);
 
-    res.send({completed: true});
+    res.json({completed: true});
 })
 
 //needs semesterIndex, courseName
@@ -121,7 +121,7 @@ app.post('/course', async (req, res, next) => {
     let body = req.body;
 
     if (body.secret != process.env.API_SECRET) {
-        res.send({completed: false})
+        res.json({completed: false})
         return;
     }
 
@@ -141,14 +141,14 @@ app.post('/course', async (req, res, next) => {
     }
     await client.query(updateQuery);
 
-    res.send({completed: true});
+    res.json({completed: true});
 })
 
 app.delete('/course/:index', async (req, res, next) => {
     let body = req.body;
 
     if (body.secret != process.env.API_SECRET) {
-        res.send({completed: false})
+        res.json({completed: false})
         return;
     }
 
@@ -168,7 +168,7 @@ app.delete('/course/:index', async (req, res, next) => {
     }
     await client.query(updateQuery);
 
-    res.send({completed: true});
+    res.json({completed: true});
 })
 
 app.listen(PORT, () => {
