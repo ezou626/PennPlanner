@@ -1,6 +1,13 @@
 import express from 'express';
+import { Client } from 'pg';
+
 const app = express();
 const PORT = 5000;
+
+//establish db connection
+const client = new Client();
+await client.connect();
+console.log("Connected!");
 
 app.get('/get-saved-data', (req, res, next) => {
     res.send('Hello World!');
