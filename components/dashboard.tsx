@@ -2,37 +2,127 @@
 import React from "react";
 import Button from "./button";
 import { useState } from 'react';
+import { useSession } from "next-auth/react";
 
-export default function Dashboard() {
+export default async function Dashboard() {
 
-	const [semesterClasses, setSemesterClasses] = useState([] as string[][]);
+	const {data: session} = useSession();
+	const name: string = session!.user!.name!;
+	const email: string = session!.user!.email!;
 
-	const addSemester = () => {
+	const backendURL = process.env.API_URL;
+
+	//add user if not already
+	await fetch(`${backendURL}/user`, {
+		method: "POST",
+		mode: "cors",
+		cache: "no-cache",
+		credentials: "same-origin",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		redirect: "follow",
+		referrerPolicy: "no-referrer",
+		body: JSON.stringify({"secret": process.env.API_SECRET, "name": name, "email": email}),
+	});
+
+	const initialData = await fetch(`${backendURL}/data`, {
+		method: "POST",
+		mode: "cors",
+		cache: "no-cache",
+		credentials: "same-origin",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		redirect: "follow",
+		referrerPolicy: "no-referrer",
+		body: JSON.stringify({"secret": process.env.API_SECRET, "name": name, "email": email}),
+	});
+
+	const [semesterClasses, setSemesterClasses] = useState((await initialData.json()).data as string[][]);
+
+	const addSemester = async () => {
 		setSemesterClasses ( (semesters) =>
 			[...semesters, []]
 		)
+		await fetch(`${backendURL}/semester`, {
+			method: "POST",
+			mode: "cors",
+			cache: "no-cache",
+			credentials: "same-origin",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			redirect: "follow",
+			referrerPolicy: "no-referrer",
+			body: JSON.stringify({"secret": process.env.API_SECRET, "name": name, "email": email}),
+		});
 	}
 
-	const removeSemester = (semesterIndex: number) => {
+	const removeSemester = async (semesterIndex: number) => {
 		setSemesterClasses ( (semesters) =>
 			semesters.filter((_, index) => index !== semesterIndex)
 		)
+		await fetch(`${backendURL}/semester`, {
+			method: "DELETE",
+			mode: "cors",
+			cache: "no-cache",
+			credentials: "same-origin",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			redirect: "follow",
+			referrerPolicy: "no-referrer",
+			body: JSON.stringify({"secret": process.env.API_SECRET, 
+				"name": name, "email": email, 
+				"semesterIndex": semesterIndex}),
+		});
 	}
 
-	const addCourse = (semesterIndex: number, courseName: string) => {
+	const addCourse = async (semesterIndex: number, courseName: string) => {
 		const newSemesterClasses = [...semesterClasses];
 
 		newSemesterClasses[semesterIndex] = [...newSemesterClasses[semesterIndex], courseName]
 
+		await fetch(`${backendURL}/course`, {
+			method: "POST",
+			mode: "cors",
+			cache: "no-cache",
+			credentials: "same-origin",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			redirect: "follow",
+			referrerPolicy: "no-referrer",
+			body: JSON.stringify({"secret": process.env.API_SECRET, 
+				"name": name, "email": email, 
+				"semesterIndex": semesterIndex, "courseName": courseName}),
+		});
+
 		setSemesterClasses(newSemesterClasses);
 	}
 
-	const removeCourse = (semesterIndex: number, courseIndex: number) => {
+	const removeCourse = async (semesterIndex: number, courseIndex: number) => {
 		const newSemesterClasses = [...semesterClasses];
 
 		newSemesterClasses[semesterIndex] = newSemesterClasses[semesterIndex].filter(
 			(_, index) => index !== courseIndex
 		)
+
+		await fetch(`${backendURL}/course`, {
+			method: "DELETE",
+			mode: "cors",
+			cache: "no-cache",
+			credentials: "same-origin",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			redirect: "follow",
+			referrerPolicy: "no-referrer",
+			body: JSON.stringify({"secret": process.env.API_SECRET, 
+				"name": name, "email": email, 
+				"semesterIndex": semesterIndex, "courseIndex": courseIndex}),
+		});
 
 		setSemesterClasses(newSemesterClasses);
 	}

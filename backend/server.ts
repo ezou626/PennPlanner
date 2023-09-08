@@ -2,11 +2,13 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { Client, Pool } from 'pg';
 import { config } from 'dotenv';
+const cors = require('cors');
 
 config();
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 const PORT = 5000;
 
 //establish elephantsql db connection
@@ -89,7 +91,7 @@ app.post('/semester', async (req, res, next) => {
     res.json({completed: true});
 })
 
-app.delete('/semester/:index', async (req, res, next) => {
+app.delete('/semester', async (req, res, next) => {
     let body = req.body;
 
     if (body.secret != process.env.API_SECRET) {
@@ -104,7 +106,7 @@ app.delete('/semester/:index', async (req, res, next) => {
     const data = await client.query(getQuery);
     const semesters = JSON.parse(data.rows[0]) as string[][];
 
-    semesters.splice(body.index, 1);
+    semesters.splice(body.semesterIndex, 1);
 
     //update data
     const newData = JSON.stringify(semesters);
@@ -144,7 +146,7 @@ app.post('/course', async (req, res, next) => {
     res.json({completed: true});
 })
 
-app.delete('/course/:index', async (req, res, next) => {
+app.delete('/course', async (req, res, next) => {
     let body = req.body;
 
     if (body.secret != process.env.API_SECRET) {
