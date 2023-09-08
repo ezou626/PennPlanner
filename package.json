@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev",
-    "postinstall": "tsc"
+    "postinstall": "tsc",
+    "start": "node dist/backend/server.js"
   },
   "repository": {
     "type": "git",
