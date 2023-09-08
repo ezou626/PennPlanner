@@ -1,11 +1,14 @@
 import express from 'express';
 import { Client } from 'pg';
+import { config } from 'dotenv';
+
+config();
 
 const app = express();
 const PORT = 5000;
 
 //establish db connection
-const client = new Client();
+const client = new Client({password: process.env.PG_PASS});
 await client.connect();
 console.log("Connected!");
 
