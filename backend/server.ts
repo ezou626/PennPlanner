@@ -7,6 +7,7 @@ const cors = require('cors');
 config();
 
 const app = express();
+app.options('*', cors())
 app.use(bodyParser.json());
 app.use(cors());
 const PORT = 5000;
