@@ -16,7 +16,7 @@ export default async function Dashboard() {
 		email = session.user!.email;
 	}
 
-	const backendURL = process.env.API_URL;
+	const backendURL = 'https://penn-planner-52e0ec314a0c.herokuapp.com:5000';
 
 	//add user if not already
 	await fetch(`${backendURL}/user`, {
