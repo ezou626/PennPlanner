@@ -20,6 +20,10 @@ console.log("Connected to DB!");
 //create database and table
 await client.query('CREATE TABLE PennData (name varchar(1000), email varchar(1000), data varchar(8000))');
 
+app.get('/ping', (req, res, next) => {
+    res.send('pong');
+})
+
 app.post('/user', async (req, res, next) => {
     let body = req.body;
 
