@@ -2,12 +2,6 @@
 
 import React from "react";
 
-const buttonSettings = {
-    'blue': 'bg-blue-500 hover:bg-blue-700',
-    'green': 'bg-green-500 hover:bg-green-700',
-    'red': 'bg-red-500 hover:bg-red-700'
-}
-
 type ButtonProps = {
     color: string;
     onClick: () => void;
@@ -18,13 +12,13 @@ const Button: React.FunctionComponent<ButtonProps> = ({ color, onClick, children
     let settings: string = 'text-md rounded px-2 py-2 text-white font-bold ';
     switch (color) {
         case 'green':
-            settings += buttonSettings.green;
+            settings += 'bg-green-500 hover:bg-green-700';
             break;
         case 'red':
-            settings += buttonSettings.red;
+            settings += 'bg-red-500 hover:bg-red-700';
             break;
         default:
-            settings += buttonSettings.blue;
+            settings += 'bg-blue-500 hover:bg-blue-700';
     }
     return <button className={settings} onClick={onClick}>{children}</button>
 }
