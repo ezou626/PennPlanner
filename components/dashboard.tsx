@@ -5,76 +5,75 @@ import { useState } from 'react';
 
 export default async function Dashboard() {
 
-	let name: string = "";
-	let email: string = "";
-
-	const backendURL = 'https://penn-planner-52e0ec314a0c.herokuapp.com:5000';
+	// let name: string = "";
+	// let email: string = "";
 
 	//add user if not already
-	await fetch(`${backendURL}/user`, {
-		method: "POST",
-		mode: "cors",
-		cache: "no-cache",
-		credentials: "same-origin",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		redirect: "follow",
-		referrerPolicy: "no-referrer",
-		body: JSON.stringify({"secret": process.env.API_SECRET, "name": name, "email": email}),
-	});
+	// await fetch(`${backendURL}/user`, {
+	// 	method: "POST",
+	// 	mode: "cors",
+	// 	cache: "no-cache",
+	// 	credentials: "same-origin",
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+	// 	},
+	// 	redirect: "follow",
+	// 	referrerPolicy: "no-referrer",
+	// 	body: JSON.stringify({"secret": process.env.API_SECRET, "name": name, "email": email}),
+	// });
 
-	const initialData = await fetch(`${backendURL}/data`, {
-		method: "POST",
-		mode: "cors",
-		cache: "no-cache",
-		credentials: "same-origin",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		redirect: "follow",
-		referrerPolicy: "no-referrer",
-		body: JSON.stringify({"secret": process.env.API_SECRET, "name": name, "email": email}),
-	});
+	const initialData = [[]] as string[][];
+  // await fetch(`${backendURL}/data`, {
+	// 	method: "POST",
+	// 	mode: "cors",
+	// 	cache: "no-cache",
+	// 	credentials: "same-origin",
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+	// 	},
+	// 	redirect: "follow",
+	// 	referrerPolicy: "no-referrer",
+	// 	body: JSON.stringify({"secret": process.env.API_SECRET, "name": name, "email": email}),
+	// });
 
-	const [semesterClasses, setSemesterClasses] = useState((await initialData.json()).data as string[][]);
+	const [semesterClasses, setSemesterClasses] = useState((initialData) as string[][]);
 
 	const addSemester = async () => {
 		setSemesterClasses ( (semesters) =>
 			[...semesters, []]
 		)
-		await fetch(`${backendURL}/semester`, {
-			method: "POST",
-			mode: "cors",
-			cache: "no-cache",
-			credentials: "same-origin",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			redirect: "follow",
-			referrerPolicy: "no-referrer",
-			body: JSON.stringify({"secret": process.env.API_SECRET, "name": name, "email": email}),
-		});
+		// await fetch(`${backendURL}/semester`, {
+		// 	method: "POST",
+		// 	mode: "cors",
+		// 	cache: "no-cache",
+		// 	credentials: "same-origin",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	redirect: "follow",
+		// 	referrerPolicy: "no-referrer",
+		// 	body: JSON.stringify({"secret": process.env.API_SECRET, "name": name, "email": email}),
+		// });
 	}
 
 	const removeSemester = async (semesterIndex: number) => {
 		setSemesterClasses ( (semesters) =>
 			semesters.filter((_, index) => index !== semesterIndex)
 		)
-		await fetch(`${backendURL}/semester`, {
-			method: "DELETE",
-			mode: "cors",
-			cache: "no-cache",
-			credentials: "same-origin",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			redirect: "follow",
-			referrerPolicy: "no-referrer",
-			body: JSON.stringify({"secret": process.env.API_SECRET, 
-				"name": name, "email": email, 
-				"semesterIndex": semesterIndex}),
-		});
+		// await fetch(`${backendURL}/semester`, {
+		// 	method: "DELETE",
+		// 	mode: "cors",
+		// 	cache: "no-cache",
+		// 	credentials: "same-origin",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	redirect: "follow",
+		// 	referrerPolicy: "no-referrer",
+		// 	body: JSON.stringify({"secret": process.env.API_SECRET, 
+		// 		"name": name, "email": email, 
+		// 		"semesterIndex": semesterIndex}),
+		// });
 	}
 
 	const addCourse = async (semesterIndex: number, courseName: string) => {
@@ -82,20 +81,20 @@ export default async function Dashboard() {
 
 		newSemesterClasses[semesterIndex] = [...newSemesterClasses[semesterIndex], courseName]
 
-		await fetch(`${backendURL}/course`, {
-			method: "POST",
-			mode: "cors",
-			cache: "no-cache",
-			credentials: "same-origin",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			redirect: "follow",
-			referrerPolicy: "no-referrer",
-			body: JSON.stringify({"secret": process.env.API_SECRET, 
-				"name": name, "email": email, 
-				"semesterIndex": semesterIndex, "courseName": courseName}),
-		});
+		// await fetch(`${backendURL}/course`, {
+		// 	method: "POST",
+		// 	mode: "cors",
+		// 	cache: "no-cache",
+		// 	credentials: "same-origin",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	redirect: "follow",
+		// 	referrerPolicy: "no-referrer",
+		// 	body: JSON.stringify({"secret": process.env.API_SECRET, 
+		// 		"name": name, "email": email, 
+		// 		"semesterIndex": semesterIndex, "courseName": courseName}),
+		// });
 
 		setSemesterClasses(newSemesterClasses);
 	}
@@ -107,25 +106,32 @@ export default async function Dashboard() {
 			(_, index) => index !== courseIndex
 		)
 
-		await fetch(`${backendURL}/course`, {
-			method: "DELETE",
-			mode: "cors",
-			cache: "no-cache",
-			credentials: "same-origin",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			redirect: "follow",
-			referrerPolicy: "no-referrer",
-			body: JSON.stringify({"secret": process.env.API_SECRET, 
-				"name": name, "email": email, 
-				"semesterIndex": semesterIndex, "courseIndex": courseIndex}),
-		});
+		// await fetch(`${backendURL}/course`, {
+		// 	method: "DELETE",
+		// 	mode: "cors",
+		// 	cache: "no-cache",
+		// 	credentials: "same-origin",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	redirect: "follow",
+		// 	referrerPolicy: "no-referrer",
+		// 	body: JSON.stringify({"secret": process.env.API_SECRET, 
+		// 		"name": name, "email": email, 
+		// 		"semesterIndex": semesterIndex, "courseIndex": courseIndex}),
+		// });
 
 		setSemesterClasses(newSemesterClasses);
 	}
 
-	const renderSemesterComponent = (semesterIndex: number, courses: string[]) => {
+	const SemesterComponent = (
+    {
+      semesterIndex, 
+      courses
+    }: {
+      semesterIndex: number; 
+      courses: string[]
+    }) => {
 		return (
 			<ul className='inline-flex flex-wrap'>
 			{courses.map((course, index) => (
@@ -140,12 +146,12 @@ export default async function Dashboard() {
 		);
 	}
 
-	const renderSemesters = () => {
+	const SemesterContainer = () => {
 		return (
 			<ul className='inline-flex flex-wrap'>
 			{semesterClasses.map((courses: string[], semesterIndex: number) => {
 
-        let textInput = React.createRef<HTMLInputElement>();
+        const textInput = React.createRef<HTMLInputElement>();
 
         function handleClick() {
           if (textInput.current != null && textInput.current.value !== "") {
@@ -160,7 +166,7 @@ export default async function Dashboard() {
             <input ref={textInput} className='rounded text-center' placeholder="Enter Course Name" />
             <Button color='green' onClick={handleClick}>Add Course</Button>
           </div>
-          {renderSemesterComponent(semesterIndex, courses)}
+          {SemesterComponent({ semesterIndex, courses })}
           <Button color='red' onClick={() => removeSemester(semesterIndex)}>Remove Semester</Button>
 				</li>);
       }
@@ -174,7 +180,7 @@ export default async function Dashboard() {
 			<div className='py-5'>
 			<Button color='green' onClick={addSemester}>Add Semester</Button>
 			</div>
-			{renderSemesters()}
+			{SemesterContainer()}
 		</>
 	)
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 export default function Credit() {
   return (
     <footer className='px-10 overflow-y-clip mx-auto max-w-5xl text-center text-gray-500'>

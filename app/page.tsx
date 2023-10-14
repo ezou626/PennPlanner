@@ -7,13 +7,7 @@ export const metadata: Metadata = {
   title: 'Penn Planner',
 }
 
-export default async function HomePage({
-  params,
-  searchParams,
-}: {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
+export default async function HomePage() {
   return (
     <>
       <Login />

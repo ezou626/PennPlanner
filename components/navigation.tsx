@@ -1,7 +1,8 @@
-'use client';
-/*
+/**
 Navigation bar for website
 */
+'use client';
+import React from 'react';
 import Link from 'next/link';
 
 export default function NavigationBar() {
