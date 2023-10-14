@@ -16,7 +16,7 @@ export default function CreateAccountPage() {
               <input className='focus:outline-none focus:ring-0 border border-black p-2 rounded' type='text' id='username' name='username' placeholder='Username' /><br />
               <input className='focus:outline-none focus:ring-0 border border-black p-2 rounded' type='password' id='password' name='password' placeholder='Password' /><br />
               <input className='focus:outline-none focus:ring-0 border border-black p-2 rounded' type='password' id='password2' name='password2' placeholder='Confirm Password' /><br />
-              <input className='text-md rounded p-2 w-full text-white font-bold bg-blue-500 hover:bg-blue-700' type='submit' value="Log In"/>
+              <input className='text-md rounded p-2 w-full text-white font-bold bg-blue-500 hover:bg-blue-700' type='submit' value="Create Account"/>
             </form>
           </div>
         </section>
