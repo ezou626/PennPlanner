@@ -5,7 +5,7 @@ type ButtonProps = {
     color: string;
     onClick: () => void;
     children: React.ReactNode;
-  };
+};
 
 const Button: React.FunctionComponent<ButtonProps> = ({ color, onClick, children }) => {
     let settings: string = 'text-md rounded px-2 py-2 text-white font-bold ';
