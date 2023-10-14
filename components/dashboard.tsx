@@ -2,19 +2,11 @@
 import React from "react";
 import Button from "./button";
 import { useState } from 'react';
-import { useSession } from "next-auth/react";
 
 export default async function Dashboard() {
 
-	const {data: session, status} = useSession();
-
 	let name: string = "";
 	let email: string = "";
-
-	if (status === 'authenticated') {
-		name = session.user!.name;
-		email = session.user!.email;
-	}
 
 	const backendURL = 'https://penn-planner-52e0ec314a0c.herokuapp.com:5000';
 

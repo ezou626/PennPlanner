@@ -4,7 +4,6 @@ import Credit from '../../components/credit';
 import NavigationBar from '../../components/navigation';
 import Dashboard from '../../components/dashboard';
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../utils/authOptions";
 
 export const metadata: Metadata = {
   title: 'Penn Planner',
@@ -17,7 +16,6 @@ export default async function PlanPage({
   params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const session = await getServerSession(authOptions);
   return (
     <>
       <NavigationBar />
